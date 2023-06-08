@@ -48,4 +48,8 @@ public class StudentService {
     public Flux<Student> findByFirstname(String firstname) {
         return studentRepository.findAllByFirstnameContainingIgnoreCase(firstname);
     }
+
+    public void deleteById(Long id) {
+        studentRepository.deleteById(id).subscribe();
+    }
 }
