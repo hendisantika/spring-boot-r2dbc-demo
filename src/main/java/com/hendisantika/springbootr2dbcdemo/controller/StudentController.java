@@ -5,9 +5,11 @@ import com.hendisantika.springbootr2dbcdemo.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,5 +31,10 @@ public class StudentController {
     @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Student> findAll() {
         return studentService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Mono<Student> findById(@PathVariable Long id) {
+        return studentService.findById(id);
     }
 }
