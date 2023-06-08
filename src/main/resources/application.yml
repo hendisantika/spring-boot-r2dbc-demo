@@ -17,3 +17,8 @@ springdoc:
     path: /swagger-ui
 application-description: '@project.description@'
 application-version: '@project.version@'
+
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
