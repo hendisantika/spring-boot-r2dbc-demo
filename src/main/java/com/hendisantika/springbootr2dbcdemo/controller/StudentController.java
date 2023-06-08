@@ -1,13 +1,12 @@
 package com.hendisantika.springbootr2dbcdemo.controller;
 
+import com.hendisantika.springbootr2dbcdemo.dto.StudentRequest;
 import com.hendisantika.springbootr2dbcdemo.entity.Student;
 import com.hendisantika.springbootr2dbcdemo.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -36,5 +35,11 @@ public class StudentController {
     @GetMapping("/{id}")
     public Mono<Student> findById(@PathVariable Long id) {
         return studentService.findById(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Student> create(@RequestBody StudentRequest request) {
+        return studentService.save(request);
     }
 }
