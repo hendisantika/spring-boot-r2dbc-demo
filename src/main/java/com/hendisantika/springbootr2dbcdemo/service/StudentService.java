@@ -1,8 +1,12 @@
 package com.hendisantika.springbootr2dbcdemo.service;
 
+import com.hendisantika.springbootr2dbcdemo.entity.Student;
 import com.hendisantika.springbootr2dbcdemo.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+
+import java.time.Duration;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +23,9 @@ import org.springframework.stereotype.Service;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+
+    public Flux<Student> findAll() {
+        return studentRepository.findAll()
+                .delayElements(Duration.ofSeconds(1));
+    }
 }
