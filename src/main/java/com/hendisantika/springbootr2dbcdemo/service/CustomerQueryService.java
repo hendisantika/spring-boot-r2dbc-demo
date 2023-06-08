@@ -43,4 +43,8 @@ public class CustomerQueryService {
                 .withTransformer("country", op -> op.map(c -> countryMap.getOrDefault(c, "UNKNOWN")));
         return this.customerRepository.findAll(Example.of(customer, matcher));
     }
+
+    public Flux<Customer> list() {
+        return customerRepository.findAll();
+    }
 }

@@ -29,4 +29,9 @@ public class CustomerController {
     public Flux<Customer> search(Customer customerSearchCriteria) {
         return this.queryService.search(customerSearchCriteria);
     }
+
+    @GetMapping
+    public Flux<Customer> getAllCustomers() {
+        return this.queryService.list();
+    }
 }
