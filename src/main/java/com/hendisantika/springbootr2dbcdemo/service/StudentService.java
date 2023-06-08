@@ -1,5 +1,6 @@
 package com.hendisantika.springbootr2dbcdemo.service;
 
+import com.hendisantika.springbootr2dbcdemo.dto.StudentRequest;
 import com.hendisantika.springbootr2dbcdemo.entity.Student;
 import com.hendisantika.springbootr2dbcdemo.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,15 @@ public class StudentService {
 
     public Mono<Student> findById(Long id) {
         return studentRepository.findById(id);
+    }
+
+    public Mono<Student> save(StudentRequest request) {
+        return studentRepository.save(
+                Student.builder()
+                        .firstname(request.getFirstname())
+                        .lastname(request.getLastname())
+                        .age(request.getAge())
+                        .build()
+        );
     }
 }
