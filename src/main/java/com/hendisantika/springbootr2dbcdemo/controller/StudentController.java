@@ -42,4 +42,9 @@ public class StudentController {
     public Mono<Student> create(@RequestBody StudentRequest request) {
         return studentService.save(request);
     }
+
+    @GetMapping("/filter")
+    public Flux<Student> findByAuthor(@RequestParam String name) {
+        return studentService.findByFirstname(name);
+    }
 }
