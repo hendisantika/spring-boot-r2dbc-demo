@@ -47,4 +47,9 @@ public class StudentController {
     public Flux<Student> findByAuthor(@RequestParam String name) {
         return studentService.findByFirstname(name);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        studentService.deleteById(id);
+    }
 }
