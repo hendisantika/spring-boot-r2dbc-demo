@@ -5,6 +5,7 @@ import com.hendisantika.springbootr2dbcdemo.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 
@@ -27,5 +28,9 @@ public class StudentService {
     public Flux<Student> findAll() {
         return studentRepository.findAll()
                 .delayElements(Duration.ofSeconds(1));
+    }
+
+    public Mono<Student> findById(Long id) {
+        return studentRepository.findById(id);
     }
 }
