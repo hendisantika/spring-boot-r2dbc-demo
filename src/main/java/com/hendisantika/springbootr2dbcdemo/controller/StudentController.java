@@ -1,9 +1,13 @@
 package com.hendisantika.springbootr2dbcdemo.controller;
 
+import com.hendisantika.springbootr2dbcdemo.entity.Student;
 import com.hendisantika.springbootr2dbcdemo.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,5 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class StudentController {
 
-    private final StudentService service;
+    private final StudentService studentService;
+
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Student> findAll() {
+        return studentService.findAll();
+    }
 }
