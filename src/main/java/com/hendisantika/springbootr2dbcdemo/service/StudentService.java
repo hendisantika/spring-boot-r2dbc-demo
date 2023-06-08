@@ -44,4 +44,8 @@ public class StudentService {
                         .build()
         );
     }
+
+    public Flux<Student> findByFirstname(String firstname) {
+        return studentRepository.findAllByFirstnameContainingIgnoreCase(firstname);
+    }
 }
